@@ -1,6 +1,7 @@
 var Canvas = function(id){ 
 	var c = {
 		ctx:document.getElementById(id).getContext("2d"),
+		toRads(x){ return x* Math.PI/180;},
 		rect:function(x,y,w,h){
 			this.ctx.strokeRect(x,y,w,h);
 		},
@@ -31,9 +32,21 @@ var Canvas = function(id){
 		},
 		setTransform: function(a,b,c,d,e,f){
 			if(arguments.length != 8){ 
-			a, b, c, d, e, f = 1;
+			a, d = 1;
+			b, c, e, f =0;
 			}
 			this.ctx.setTransform(a,b,c,d,e,f);
+		},
+		line:function(x1,y1,x2,y2){
+			this.ctx.beginPath();
+			this.ctx.moveTo(x1, y1);
+			this.ctx.lineTo(x2, y2); 
+			this.ctx.stroke();  
+		},
+		triangle:function(x1,y1,x2,y2,x3,y3){
+			this.line(x1,y1,x2,y2); 
+			this.line(x2,y2,x3,y3); 
+			this.line(x1,y1,x3,y3); 
 		}
 	}	
 	return  c;
