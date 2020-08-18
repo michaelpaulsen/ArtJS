@@ -17,6 +17,18 @@ var Canvas = function(id){
 			}
 			this.ctx.stroke();
 		},
+		arc:function(){
+			/**ctx.arc(x, y, radius, startAngle, endAngle [, anticlockwise]);*/
+			this.ctx.beginPath();
+			if(arguments.length == 3){
+				this.ctx.arc(arguments[0],arguments[1],arguments[2],0,2*Math.PI);
+			}else if( arguments.length == 5){
+				this.ctx.arc(arguments[0],arguments[1],arguments[2],arguments[3],arguments[4]);	
+			}else if(arguments.length == 6){
+				this.ctx.arc(arguments[0],arguments[1],arguments[2],arguments[3],arguments[4],true);	
+			}
+			this.ctx.stroke();
+		},
 		setLineDash: function(lineDash){ 
 			if(Array.isArray(arguments[0])){
 				this.ctx.setLineDash(arguments[0]); 
